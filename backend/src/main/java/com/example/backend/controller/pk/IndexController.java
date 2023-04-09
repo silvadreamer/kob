@@ -1,6 +1,7 @@
 package com.example.backend.controller.pk;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author Silva31
@@ -8,6 +9,12 @@ import org.springframework.stereotype.Controller;
  */
 
 @Controller
+@RequestMapping("/pk/")
 public class IndexController
 {
+    @RequestMapping("index/")
+    public String index()
+    {
+        return "pk/index.html";
+    }
 }
