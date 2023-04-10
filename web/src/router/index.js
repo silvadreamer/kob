@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+//import PkIndexView from '../views/pk/PkIndexView.vue'
+
 
 const routes = [
 ]
