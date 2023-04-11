@@ -1,5 +1,5 @@
 <template>
-<div>PK</div>
+<div color="black">对战</div>
 </template>
 
 <script>

@@ -1,17 +1,18 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">KoB</a>
+            <!-- 路由模式，不刷新 -->
+            <router-link class="navbar-brand" :to="{name: 'home'}">KoB</router-link>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">对战</a>
+                        <router-link class="nav-link" :to="{name: 'home'}">对战</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">对局列表</a>
+                        <router-link class="nav-link" :to="{name: 'RecordIndexView'}">对局列表</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">排行榜</a>
+                        <router-link class="nav-link" :to="{name: 'RanklistIndexView'}">排行榜</router-link>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -21,7 +22,9 @@
                             我的
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">我的bot</a></li>
+                            <li>
+                                <router-link class="dropdown-item" :to="{name: 'UserBotIndexView'}">我的bot</router-link>
+                            </li>
                             <li><a class="dropdown-item" href="#">退出登录</a></li>
                         </ul>
                     </li>

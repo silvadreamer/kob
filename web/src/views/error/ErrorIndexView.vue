@@ -1,8 +1,11 @@
 <template>
-<div>404</div>
+<contentBase>
+    404
+</contentBase>
 </template>
 
 <script>
+
 </script>
 
 <style scoped>
