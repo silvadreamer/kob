@@ -1,9 +1,16 @@
 <template>
-<div color="black">对战</div>
+    <PlayGround />
 </template>
 
 <script>
+
+import PlayGround from "@/components/PlayGroud.vue"
+
+export default {
+    components: {
+        PlayGround,
+    }
+}
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
