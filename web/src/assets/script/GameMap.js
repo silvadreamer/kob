@@ -1,10 +1,13 @@
 import { GameObject } from "./GameObject";
 import { Walls } from "./Walls";
 
+
+
 export class GameMap extends GameObject {
     constructor(ctx, parent) {
         super();
 
+        //获得上下文
         this.ctx = ctx;
         this.parent = parent;
         this.L = 0;
@@ -17,6 +20,7 @@ export class GameMap extends GameObject {
 
     }
 
+    //检查是否连通
     check_is_valid(g, sx, sy, ex, ey) {
         if (sx == ex && sy == ey) return true;
         g[sx][sy] = true;
@@ -30,6 +34,7 @@ export class GameMap extends GameObject {
         return false;
     }
 
+    //建立障碍
     CreateWalls() {
         const g = [];
         for (let i = 0; i < this.row; i++) {
@@ -91,6 +96,7 @@ export class GameMap extends GameObject {
         this.render();
     }
 
+    //绘制地图背景
     render() {
         const color_even = "#AAD771", color_odd = "#AAD730";
         for (let r = 0; r < this.row; r++) {

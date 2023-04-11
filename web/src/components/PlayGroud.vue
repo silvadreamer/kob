@@ -1,5 +1,7 @@
+<!-- 上层为地图的组件 -->
 <template>
     <div class="playground">
+        <!-- 显示地图 -->
         <GameMap />
     </div>
 </template>

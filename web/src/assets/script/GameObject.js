@@ -2,7 +2,9 @@ const Game_object = [];
 
 export class GameObject {
     constructor() {
+        //每构造一次，就push一个(每个小格)
         Game_object.push(this);
+        //时间差
         this.timedelta = 0;
         this.has_called_start = false;
     }
@@ -34,6 +36,7 @@ const step = (timestamp) => {
     for (let obj of Game_object) {
         if (!obj.has_called_start) {
             obj.has_called_start = true;
+            //
             obj.start();
         }
         else {
@@ -46,4 +49,5 @@ const step = (timestamp) => {
     requestAnimationFrame(step);
 }
 
+//调用
 requestAnimationFrame(step);

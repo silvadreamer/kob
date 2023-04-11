@@ -1,5 +1,6 @@
 import { GameObject } from "./GameObject";
 
+//障碍物
 export class Walls extends GameObject{
     constructor(r, c, GameMap){
         super();
@@ -21,6 +22,5 @@ export class Walls extends GameObject{
 
         this.ctx.fillStyle = this.color;
         this.ctx.fillRect(this.c * this.L, this.r * this.L, this.L, this.L);
-
     }
 }
