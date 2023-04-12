@@ -1,6 +1,6 @@
 import { GameObject } from "./GameObject";
 import { Walls } from "./Walls";
-
+import { Snake } from "./Snake";
 
 
 export class GameMap extends GameObject {
@@ -12,11 +12,16 @@ export class GameMap extends GameObject {
         this.parent = parent;
         this.L = 0;
 
-        this.col = 13;
+        this.col = 14;
         this.row = 13;
 
         this.walls_count = 24;
         this.walls = [];
+
+        this.snake = [
+            new Snake({ id: 0, color: "#4876E3", r: this.row - 2, c: 1 }, this),
+            new Snake({ id: 1, color: "#F94848", r: 1, c: this.col - 2 }, this)
+        ];
 
     }
 
@@ -54,13 +59,13 @@ export class GameMap extends GameObject {
         }
 
         //创建随机障碍物
-        for (let i = 0; i < this.walls_count/2; i++) {
+        for (let i = 0; i < this.walls_count / 2; i++) {
             for (let j = 0; j < 1000; j++) {
                 let r = parseInt(Math.random() * this.row);
                 let c = parseInt(Math.random() * this.col);
-                if (g[r][c] || g[c][r]) continue;
+                if (g[r][c] || g[this.row - 1 - r][this.col - 1 - c]) continue;
                 if (r == this.row - 2 && c == 1 || r == 1 && c == this.col - 2) continue;
-                g[r][c] = g[c][r] = true;
+                g[r][c] = g[this.row - 1 - r][this.col - 1 - c] = true;
                 break;
             }
         }
@@ -85,6 +90,47 @@ export class GameMap extends GameObject {
         }
     }
 
+    check_ready()
+    {
+        for(const snake of this.snake)
+        {
+            if(snake.status !== 'idle') return false;
+            if(snake.direction === -1) return false;
+        }
+
+        return true;
+    }
+
+    next_step()
+    {
+        for(const snake of this.snake)
+        {
+            snake.next_step();
+        }
+    }
+
+    check_valid(cell)
+    {
+        for(const wall of this.walls)
+        {
+            if(wall.r == cell.r && wall.c == cell.c)
+                return false;
+        }
+
+        for(const snake of this.snake)
+        {
+            let k = snake.cells.length;
+            if(!snake.check_tail_increase()) k --;
+            for(let i = 0; i < k; i ++)
+            {
+                if(snake.cells[i].r === cell.r && snake.cells[i].c === cell.c)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
     update_size() {
         this.L = parseInt(Math.min(this.parent.clientWidth / this.col, this.parent.clientHeight / this.row));
         this.ctx.canvas.width = this.L * this.col;
@@ -93,6 +139,10 @@ export class GameMap extends GameObject {
 
     update() {
         this.update_size();
+        if(this.check_ready())
+        {
+            this.next_step();
+        }
         this.render();
     }
 

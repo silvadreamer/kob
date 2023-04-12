@@ -2,6 +2,7 @@
     <div ref="parent" class="gamemap">
         <canvas ref="canvas">
         </canvas>
+        <!--     -->
     </div>
 </template>
 
