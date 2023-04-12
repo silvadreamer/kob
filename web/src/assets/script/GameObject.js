@@ -1,53 +1,50 @@
-const Game_object = [];
+const Game_Object = [];
 
 export class GameObject {
     constructor() {
-        //每构造一次，就push一个(每个小格)
-        Game_object.push(this);
-        //时间差
+        Game_Object.push(this);
         this.timedelta = 0;
         this.has_called_start = false;
     }
 
-    start() //只执行一次
-    { }
+    start() {  // 只执行一次
+    }
 
-    update()    //每一帧都执行,除了第一帧
-    { }
+    update() {  // 每一帧执行一次，除了第一帧之外
 
-    on_destory()    //删除之前执行
-    { }
+    }
 
-    destory() {
-        this.on_destory();
+    on_destroy() {  // 删除之前执行
 
-        for (let i in Game_object) {
-            const obj = Game_object[i];
+    }
+
+    destroy() {
+        this.on_destroy();
+
+        for (let i in Game_Object) {
+            const obj = Game_Object[i];
             if (obj === this) {
-                Game_object.splice(i);
+                Game_Object.splice(i);
                 break;
             }
         }
     }
 }
 
-let last_timestamp; //上一次执行的时刻
-const step = (timestamp) => {
-    for (let obj of Game_object) {
+let last_timestamp;  // 上一次执行的时刻
+const step = timestamp => {
+    for (let obj of Game_Object) {
         if (!obj.has_called_start) {
             obj.has_called_start = true;
-            //
             obj.start();
-        }
-        else {
+        } else {
             obj.timedelta = timestamp - last_timestamp;
-            obj.update()
+            obj.update();
         }
     }
 
     last_timestamp = timestamp;
-    requestAnimationFrame(step);
+    requestAnimationFrame(step)
 }
 
-//调用
-requestAnimationFrame(step);
+requestAnimationFrame(step)

@@ -1,26 +1,24 @@
 import { GameObject } from "./GameObject";
 
-//障碍物
-export class Walls extends GameObject{
-    constructor(r, c, GameMap){
+export class Walls extends GameObject {
+    constructor(r, c, gamemap) {
         super();
-        
+
         this.r = r;
-        this.c =c;
-        this.gamemap = GameMap;
+        this.c = c;
+        this.gamemap = gamemap;
         this.color = "#B37226";
     }
 
-    update(){
+    update() {
         this.render();
     }
 
-    render()
-    {
-        this.L = this.gamemap.L;
-        this.ctx = this.gamemap.ctx;
+    render() {
+        const L = this.gamemap.L;
+        const ctx = this.gamemap.ctx;
 
-        this.ctx.fillStyle = this.color;
-        this.ctx.fillRect(this.c * this.L, this.r * this.L, this.L, this.L);
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.c * L, this.r * L, L, L);
     }
 }
