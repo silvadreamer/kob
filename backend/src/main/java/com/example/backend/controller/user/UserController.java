@@ -35,8 +35,6 @@ public class UserController
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", userid);
         return userMapper.selectOne(queryWrapper);
-
-        //return userMapper.selectById(userid);
     }
 
     @GetMapping("/user/add/{userid}/{username}/{password}/")

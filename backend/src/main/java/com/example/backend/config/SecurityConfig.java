@@ -11,12 +11,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @version 1.0
  * @date 2023/5/27 17:13
  */
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig {
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-}
+//@Configuration
+//@EnableWebSecurity
+//public class SecurityConfig
+//{
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder()
+//    {
+//        return new BCryptPasswordEncoder();
+//    }
+//}
