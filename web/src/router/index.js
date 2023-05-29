@@ -5,6 +5,8 @@ import RanklistIndexView from '../views/ranklist/RanklistIndexView.vue'
 import RecordIndexView from '../views/record/RecordIndexView.vue'
 import UserBotIndexView from '../views/user/bot/UserBotIndexView.vue'
 import ErrorIndexView from '../views/error/ErrorIndexView.vue'
+import UserAccountLoginView from '../views/user/account/UserAccountLoginView.vue'
+import UserAccountRegisterView from '../views/user/account/UserAccountRegisterView.vue'
 
 
 
@@ -42,6 +44,16 @@ const routes = [
   {
     path : '/:catchAll(.*)',
     redirect: "/404/"
+  },
+  {
+    path:'/user/account/login/',
+    name:'userAccountLogin',
+    component:UserAccountLoginView
+  },
+  {
+    path:'/user/account/register/',
+    name:'userAccountRegister',
+    component:UserAccountRegisterView
   }
 ]
 
