@@ -73,7 +73,7 @@ div.error-message{
 }
 </style> -->
 <template>
-    <ContentField>
+    <ContentField v-if="!$store.state.user.pulling_info">
         <div class="row justify-content-md-center">
             <div class="col-3">
                 <form @submit.prevent="login">
@@ -109,6 +109,24 @@ export default {
         let password = ref('');
         let error_message = ref('');
 
+        const jwtToken = localStorage.getItem('jwtToken') 
+        if(jwtToken)
+        {
+            store.commit('updateToken', jwtToken)
+            store.dispatch("getinfo",{
+                success(){
+                    router.push({name:"home"})
+                    store.commit("updatePullingInfo", true)
+                },
+                error(){
+                    store.commit("updatePullingInfo", false)
+                }
+            })
+        }
+        else
+        {
+            store.commit("updatePullingInfo", false)
+        }
         const login = () => {
             error_message.value = "";
             store.dispatch("login", {
