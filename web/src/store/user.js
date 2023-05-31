@@ -11,6 +11,7 @@ export default {
   getters: {
   },
   mutations: {
+
     updateUser(state, user)
     {
         state.id = user.id
@@ -39,6 +40,7 @@ export default {
     }
   },
   actions: {
+
     login(context, data)
     {
         $.ajax({

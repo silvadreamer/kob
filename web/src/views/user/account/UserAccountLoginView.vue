@@ -1,77 +1,3 @@
-<!-- <template>
-    <ContentField>
-        <div class="row justify-content-md-center">
-            <div class="col-3">
-                <form @submit.prevent="login">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">用户名</label>
-                        <input v-model = "username" type="text" class="form-control" id="username" placeholder="请输入用户">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">密码</label>
-                        <input v_model = "password" type="password" class="form-control" id="password" placeholder="请输入密码">
-                    </div>
-                </form>
-                <div class="error_message">{{ error_message }}</div>
-                <button type="submit" class="btn btn-outline-primary">登录</button>
-            </div>
-        </div>
-
-    </ContentField>
-</template>
-
-<script>
-import ContentField from "@/components/ContentField.vue"
-import { useStore } from 'vuex'
-import {ref} from 'vue'
-import router from "@/router/index"
-
-export default {
-    components: {
-        ContentField,
-    },
-    setup()
-    {
-        const store = useStore
-        let username = ref(" ")
-        let password = ref(" ")
-        let error_message = ref(' ')
-
-        const login = ()=>{
-            error_message = " "
-            store.dispatch("login", {
-                username: username.value,
-                password: password.value,
-                success()
-                {
-                    router.push({name : "home"})
-                    console.log(store.state.user);
-                },
-                error()
-                {
-                    error_message = "用户名或密码错误"
-                }
-            })
-        }
-
-        return {
-            username,
-            password,
-            error_message,
-            login
-        }
-    }
-}
-</script>
-
-<style scoped>
-button{
-    width: 100%;
-}
-div.error-message{
-    color: red;
-}
-</style> -->
 <template>
     <ContentField v-if="!$store.state.user.pulling_info">
         <div class="row justify-content-md-center">
@@ -127,6 +53,7 @@ export default {
         {
             store.commit("updatePullingInfo", false)
         }
+        
         const login = () => {
             error_message.value = "";
             store.dispatch("login", {
